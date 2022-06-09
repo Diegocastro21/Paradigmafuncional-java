@@ -1,4 +1,4 @@
-package finalsection;
+package Lambdas;
 
 import java.util.function.BiFunction;
 import java.util.function.Consumer;

@@ -1,4 +1,4 @@
-package finalsection;
+package MethodReferences;
 
 import java.util.function.Consumer;
 

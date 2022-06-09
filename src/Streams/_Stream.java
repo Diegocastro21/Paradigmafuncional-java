@@ -1,4 +1,4 @@
-package streams;
+package Streams;
 
 import java.util.List;
 import java.util.Set;
@@ -8,7 +8,7 @@ import java.util.function.Predicate;
 import java.util.function.ToIntFunction;
 import java.util.stream.Collectors;
 
-import static streams._Stream.Gender.*;
+import static Streams._Stream.Gender.*;
 
 public class _Stream {
 

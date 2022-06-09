@@ -1,4 +1,4 @@
-package FunctionalsInterfaces;
+package functionalinterface;
 
 @FunctionalInterface
 public interface Operac {

@@ -1,4 +1,4 @@
-package FunctionalsInterfaces;
+package functionalinterface;
 
 public class FuncInterApp {
 
