@@ -1,3 +1,4 @@
+package Streams;
 public class Person {
 
   private final String name;
