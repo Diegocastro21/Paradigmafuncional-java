@@ -5,41 +5,41 @@ import java.util.concurrent.*;
 public class Deadlock {
     public static void main(String[] args) {
 // Create participants and resources
-        Fox robin = new Fox();
-        Fox miki = new Fox();
-        Food food = new Food();
-        Water water = new Water();
+        FoxDeadlock robin = new FoxDeadlock();
+        FoxDeadlock miki = new FoxDeadlock();
+        FoodDeadlock foodDeadlock = new FoodDeadlock();
+        WaterDeadlock waterDeadlock = new WaterDeadlock();
 // Process data
         ExecutorService service = null;
         try {
             service = Executors.newScheduledThreadPool(10);
-            service.submit(() -> robin.eatAndDrink(food,water));
-            service.submit(() -> miki.drinkAndEat(food,water));
+            service.submit(() -> robin.eatAndDrink(foodDeadlock, waterDeadlock));
+            service.submit(() -> miki.drinkAndEat(foodDeadlock, waterDeadlock));
         } finally {
             if(service != null) service.shutdown();
         }
     }
 }
 
-class Food {}
+class FoodDeadlock {}
 
-class Water {}
+class WaterDeadlock {}
 
-class Fox {
-    public void eatAndDrink(Food food, Water water) {
-        synchronized(food) {
+class FoxDeadlock {
+    public void eatAndDrink(FoodDeadlock foodDeadlock, WaterDeadlock waterDeadlock) {
+        synchronized(foodDeadlock) {
             System.out.println("Robin: Got deadlock.Food!");
             move();
-            synchronized(water) {
+            synchronized(waterDeadlock) {
                 System.out.println("Robin: Got deadlock.Water!");
             }
         }
     }
-    public void drinkAndEat(Food food, Water water) {
-        synchronized(water) {
+    public void drinkAndEat(FoodDeadlock foodDeadlock, WaterDeadlock waterDeadlock) {
+        synchronized(waterDeadlock) {
             System.out.println("Miki: Got deadlock.Water!");
             move();
-            synchronized(food) {
+            synchronized(foodDeadlock) {
                 System.out.println("Miki: Got deadlock.Food!");
             }
         }
